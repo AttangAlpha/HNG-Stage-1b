@@ -1,0 +1,302 @@
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  :root {
+      --bg: #f5f2ee;
+      --card-bg: #fdfcfa;
+      --ink: #1a1714;
+      --ink-muted: #6b6560;
+      --ink-faint: #b8b3ae;
+      --accent: #c0392b;
+      --accent-warm: #e8673a;
+      --border: #e2ddd8;
+      --tag-bg: #f0ece7;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+      :root {
+          --bg: #000000;
+          --card-bg: #111111;
+          --ink: #f0ece6;
+          --ink-muted: #9e988f;
+          --ink-faint: #554f48;
+          --accent: #e05a4a;
+          --accent-warm: #e8834a;
+          --border: #302b24;
+          --tag-bg: #2a2520;
+      }
+  }
+
+  body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      color: var(--ink);
+  }
+
+  article[data-testid="test-profile-card"] {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      width: 100%;
+      max-width: 780px;
+      overflow: hidden;
+      position: relative;
+  }
+
+  .card-accent-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-warm) 100%);
+  }
+
+  .card-inner {
+      padding: 2.5rem 2.5rem 2rem;
+  }
+
+  /* === TOP SECTION: avatar + header === */
+  .card-top {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 2rem;
+  }
+
+  figure {
+      flex-shrink: 0;
+      width: 7rem;
+      height: 7rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--border);
+      object-fit: cover;
+  }
+
+  img {
+      width: 100%;
+      object-fit: cover;
+  }
+
+  figcaption {
+      font-size: 11px;
+      color: var(--ink-faint);
+      text-align: center;
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+  }
+
+  .card-header {
+      padding-top: 4px;
+  }
+
+  .card-header h1[data-testid="test-user-name"] {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+  }
+
+  .card-header .role {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.9rem;
+  }
+
+  p[data-testid="test-user-bio"] {
+      font-size: 0.97rem;
+      line-height: 1.72;
+      color: var(--ink-muted);
+      font-weight: 300;
+      max-width: 480px;
+  }
+
+  /* === TIME === */
+  .time-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1rem;
+  }
+
+  .time-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--ink-faint);
+  }
+
+  time[data-testid="test-user-time"] {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      background: var(--tag-bg);
+      padding: 3px 10px;
+      border-radius: 2px;
+      border: 1px solid var(--border);
+      transition: color 0.15s;
+  }
+
+  /* === DIVIDER === */
+  .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.6rem 0;
+  }
+
+  /* === BOTTOM GRID: social + hobbies/dislikes === */
+  .card-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+  }
+
+  .section-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-faint);
+      margin-bottom: 0.85rem;
+      font-weight: 500;
+  }
+
+  /* === SOCIAL === */
+  nav[data-testid="test-user-social-links"] ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+  }
+
+  nav[data-testid="test-user-social-links"] a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      padding: 5px 0;
+      border-bottom: 1px solid transparent;
+      transition: color 0.18s, border-color 0.18s;
+      font-weight: 400;
+  }
+
+  nav[data-testid="test-user-social-links"] a:hover,
+  nav[data-testid="test-user-social-links"] a:focus {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      outline: none;
+  }
+
+  nav[data-testid="test-user-social-links"] a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+  }
+
+  .social-icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      opacity: 0.55;
+      flex-shrink: 0;
+  }
+
+  /* === TAGS (hobbies / dislikes) === */
+  .tag-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+  }
+
+  .tag-list li {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 2px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      color: var(--ink-muted);
+      background: var(--tag-bg);
+  }
+
+  ul[data-testid="test-user-hobbies"] li {
+      border-color: #c8ddc4;
+      background: #f0f7ee;
+      color: #3a6335;
+  }
+
+  @media (prefers-color-scheme: dark) {
+      ul[data-testid="test-user-hobbies"] li {
+          border-color: #2e4a2a;
+          background: #1e2e1b;
+          color: #7db874;
+      }
+
+      ul[data-testid="test-user-dislikes"] li {
+          border-color: #4a2a2a;
+          background: #2e1b1b;
+          color: #c97070;
+      }
+  }
+
+  ul[data-testid="test-user-dislikes"] li {
+      border-color: #e0c4c4;
+      background: #fdf0f0;
+      color: #8b3a3a;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+      .card-inner {
+          padding: 1.5rem 1.25rem;
+      }
+
+      .card-top {
+          grid-template-columns: 1fr;
+          gap: 1.2rem;
+      }
+
+      figure {
+          width: 5rem;
+          height: 5rem;
+      }
+
+      .card-bottom {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+      }
+  }
+
+  @media (max-width: 400px) {
+      .card-inner {
+          padding: 1.25rem 1rem;
+      }
+  }
+
+  /* === SCREEN READER ONLY === */
+  .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+  }
